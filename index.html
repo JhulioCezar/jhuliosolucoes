@@ -3,220 +3,769 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jhulio Soluções</title>
+    <title>Jhulio Soluções - Tecnologia e Inovação</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Reset e configurações básicas */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
         
+        :root {
+            --primary: #1a237e;
+            --secondary: #667eea;
+            --accent: #764ba2;
+            --light: #f8f9fa;
+            --dark: #121212;
+            --gray: #6c757d;
+            --success: #28a745;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
+            color: var(--dark);
+            background-color: #f8fafc;
+            overflow-x: hidden;
+        }
+        
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+        
+        ul {
+            list-style: none;
         }
         
         .container {
-            max-width: 800px;
             width: 100%;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            overflow: hidden;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
         
-        header {
-            background: linear-gradient(90deg, #1a237e 0%, #283593 100%);
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
             color: white;
-            padding: 40px;
-            text-align: center;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
         
-        h1 {
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--secondary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .section-title {
             font-size: 2.5rem;
-            margin-bottom: 10px;
-            font-weight: 300;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary);
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        /* HEADER E NAVEGAÇÃO */
+        header {
+            background-color: white;
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
         }
         
         .logo {
-            font-size: 3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            font-weight: 600;
+            position: relative;
+            padding: 5px 0;
+        }
+        
+        .nav-links a:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover:after {
+            width: 100%;
+        }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary);
+        }
+        
+        /* HERO SECTION */
+        .hero {
+            padding: 180px 0 100px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero:before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            top: -250px;
+            right: -250px;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.2rem;
             margin-bottom: 20px;
+            line-height: 1.2;
+            color: var(--primary);
         }
         
-        .tagline {
+        .hero-text h1 span {
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero-text p {
             font-size: 1.2rem;
-            opacity: 0.9;
-            font-weight: 300;
-        }
-        
-        .content {
-            padding: 40px;
-        }
-        
-        .section {
+            color: var(--gray);
             margin-bottom: 30px;
         }
         
-        h2 {
-            color: #1a237e;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e8eaf6;
+        .hero-image {
+            text-align: center;
         }
         
-        .services {
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        
+        /* APLICAÇÕES SECTION */
+        /* AQUI É A SEÇÃO PRINCIPAL ONDE VOCÊ VAI LISTAR SUAS APLICAÇÕES */
+        /* ALTERE OS CARDS ABAIXO PARA ADICIONAR/REMOVER APLICAÇÕES */
+        .applications {
+            padding: 100px 0;
+            background-color: white;
+        }
+        
+        .apps-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .app-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid #eee;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        .app-icon {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+        }
+        
+        .app-content {
+            padding: 25px;
+        }
+        
+        .app-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        .app-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            font-size: 0.95rem;
+        }
+        
+        .app-link {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--secondary);
+            font-weight: 600;
+        }
+        
+        .app-link i {
+            transition: var(--transition);
+        }
+        
+        .app-link:hover i {
+            transform: translateX(5px);
+        }
+        
+        /* SERVIÇOS SECTION */
+        .services {
+            padding: 100px 0;
+            background-color: var(--light);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
         }
         
         .service-card {
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 4px solid #667eea;
-            transition: transform 0.3s;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            text-align: center;
         }
         
         .service-card:hover {
             transform: translateY(-5px);
         }
         
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
         .service-card h3 {
-            color: #1a237e;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+        
+        /* FOOTER */
+        footer {
+            background: linear-gradient(90deg, var(--primary) 0%, #151f6d 100%);
+            color: white;
+            padding: 70px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .footer-links h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-links h3:after {
+            content: '';
+            position: absolute;
+            width: 40px;
+            height: 2px;
+            background: var(--secondary);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-links ul li {
             margin-bottom: 10px;
         }
         
-        .contact-info {
-            background: #e8eaf6;
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 20px;
+        .footer-links ul li a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
         }
         
-        .contact-item {
+        .contact-info-footer {
+            margin-top: 15px;
+        }
+        
+        .contact-info-footer div {
             display: flex;
             align-items: center;
+            gap: 10px;
             margin-bottom: 15px;
         }
         
-        .contact-item i {
-            font-size: 1.5rem;
-            color: #667eea;
-            margin-right: 15px;
-            width: 30px;
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
         }
         
-        footer {
-            background: #1a237e;
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: var(--transition);
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* BANNER SECTION - OPÇÃO PARA DESTAQUE OU PROMOÇÃO */
+        /* SE NÃO PRECISAR DE BANNER, PODE REMOVER ESTA SEÇÃO */
+        .banner {
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
             color: white;
+            padding: 60px 0;
             text-align: center;
-            padding: 20px;
-            margin-top: 30px;
         }
         
-        .status {
-            background: #e8f5e9;
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 30px;
-            text-align: center;
-            border-left: 4px solid #4caf50;
+        .banner h2 {
+            font-size: 2.2rem;
+            margin-bottom: 20px;
         }
         
-        @media (max-width: 600px) {
-            .container {
-                border-radius: 10px;
+        .banner p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            opacity: 0.9;
+        }
+        
+        /* RESPONSIVIDADE */
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
             
-            header {
-                padding: 30px 20px;
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
             }
             
-            h1 {
+            .nav-links {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                width: 100%;
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 30px;
+                box-shadow: var(--shadow);
+                transform: translateY(-150%);
+                transition: transform 0.5s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                transform: translateY(0);
+            }
+            
+            .section-title {
                 font-size: 2rem;
             }
             
-            .content {
-                padding: 20px;
+            .hero-text h1 {
+                font-size: 2.3rem;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <div class="logo">🚀</div>
-            <h1>Jhulio Soluções</h1>
-            <p class="tagline">Soluções tecnológicas inovadoras para seu negócio</p>
-        </header>
-        
-        <div class="content">
-            <div class="status">
-                <p>🔧 <strong>Site em Construção</strong> - Em breve traremos novidades!</p>
-            </div>
+    <!-- HEADER COM MENU DE NAVEGAÇÃO -->
+    <!-- ALTERE OS LINKS DO MENU CONFORME SUAS PÁGINAS/SEÇÕES -->
+    <header>
+        <div class="container header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">🚀</div>
+                <div class="logo-text">Jhulio Soluções</div>
+            </a>
             
-            <div class="section">
-                <h2>Sobre Nós</h2>
-                <p>Somos uma empresa especializada em soluções tecnológicas, oferecendo serviços personalizados para impulsionar seu negócio na era digital. Estamos trabalhando para trazer as melhores soluções para você.</p>
-            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
             
-            <div class="section">
-                <h2>Nossos Serviços</h2>
-                <div class="services">
-                    <div class="service-card">
-                        <h3>🌐 Desenvolvimento Web</h3>
-                        <p>Sites e sistemas web responsivos e modernos.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>📱 Aplicativos</h3>
-                        <p>Soluções mobile para iOS e Android.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>☁️ Cloud Solutions</h3>
-                        <p>Infraestrutura e hospedagem na nuvem.</p>
-                    </div>
-                    <div class="service-card">
-                        <h3>🔒 Consultoria</h3>
-                        <p>Otimização e segurança de sistemas.</p>
-                    </div>
-                </div>
+            <nav>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Início</a></li>
+                    <li><a href="#applications">Aplicações</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <!-- ALTERE TEXTO E IMAGEM CONFORME NECESSÁRIO -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <div class="hero-text">
+                <h1>Soluções <span>Tecnológicas</span> para Potencializar seu Negócio</h1>
+                <p>Oferecemos sistemas inovadores e personalizados para otimizar processos, aumentar produtividade e impulsionar resultados. Conheça nossas aplicações desenvolvidas para atender suas necessidades específicas.</p>
+                <a href="#applications" class="btn">Ver Aplicações</a>
+                <a href="#contact" class="btn btn-outline" style="margin-left: 15px;">Fale Conosco</a>
             </div>
-            
-            <div class="section">
-                <h2>Contato</h2>
-                <p>Entre em contato conosco para orçamentos e informações:</p>
-                
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div>📧</div>
-                        <div><strong>Email:</strong> contato@jhuliosolucoes.com.br</div>
-                    </div>
-                    <div class="contact-item">
-                        <div>🌐</div>
-                        <div><strong>Site:</strong> www.jhuliosolucoes.com.br</div>
-                    </div>
-                    <div class="contact-item">
-                        <div>📍</div>
-                        <div><strong>Localização:</strong> Em todo o Brasil</div>
-                    </div>
+            <div class="hero-image">
+                <!-- TROCAR IMAGEM POR UMA RELEVANTE PARA SUA EMPRESA -->
+                <!-- Se não tiver imagem, pode remover esta div ou usar um ícone/svg -->
+                <div style="font-size: 8rem; color: var(--secondary); opacity: 0.8;">
+                    <i class="fas fa-laptop-code"></i>
                 </div>
             </div>
         </div>
-        
-        <footer>
-            <p>&copy; 2026 Jhulio Soluções. Todos os direitos reservados.</p>
-            <p>jhuliosolucoes.com.br</p>
-        </footer>
-    </div>
-</body>
+    </section>
 
+    <!-- SEÇÃO DE APLICAÇÕES -->
+    <!-- ESTA É A SEÇÃO MAIS IMPORTANTE - ADICIONE AQUI TODAS SUAS APLICAÇÕES -->
+    <!-- PARA CADA NOVA APLICAÇÃO, COPIE UM BLOCO .app-card E ATUALIZE OS DADOS -->
+    <section class="applications" id="applications">
+        <div class="container">
+            <h2 class="section-title">Nossas Aplicações</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 50px; color: var(--gray); font-size: 1.1rem;">
+                Conheça nossos sistemas desenvolvidos para atender diferentes necessidades empresariais. Clique em qualquer aplicação para acessar.
+            </p>
+            
+            <div class="apps-grid">
+                <!-- APLICAÇÃO 1 - CONTROLE DE FROTA -->
+                <!-- ATUALIZE O LINK, ÍCONE, TÍTULO E DESCRIÇÃO -->
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>Controle de Frota</h3>
+                        <p>Sistema completo para gestão de frotas veiculares. Controle de manutenção, combustível, rotas e motoristas em tempo real.</p>
+                        <a href="https://controle-frota.jhuliosolucoes.com.br" target="_blank" class="app-link">
+                            Acessar Sistema <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- APLICAÇÃO 2 - EXEMPLO (PODE REMOVER/ALTERAR) -->
+                <!-- PARA ADICIONAR NOVAS APLICAÇÕES, COPIE ESTE BLOCO -->
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>Gestão Financeira</h3>
+                        <p>Controle completo das finanças da sua empresa. Fluxo de caixa, contas a pagar e receber, relatórios e projeções.</p>
+                        <a href="#" class="app-link">
+                            Em Breve <i class="fas fa-clock"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- APLICAÇÃO 3 - EXEMPLO (PODE REMOVER/ALTERAR) -->
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>E-commerce</h3>
+                        <p>Plataforma completa para vendas online. Gestão de produtos, pedidos, pagamentos e integração com marketplaces.</p>
+                        <a href="#" class="app-link">
+                            Em Breve <i class="fas fa-clock"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- APLICAÇÃO 4 - EXEMPLO (PODE REMOVER/ALTERAR) -->
+                <!-- PARA REMOVER UMA APLICAÇÃO, APAGUE TODO O BLOCO .app-card -->
+                <div class="app-card">
+                    <div class="app-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="app-content">
+                        <h3>RH e Ponto</h3>
+                        <p>Sistema de gestão de recursos humanos. Controle de ponto eletrônico, folha de pagamento, férias e benefícios.</p>
+                        <a href="#" class="app-link">
+                            Em Breve <i class="fas fa-clock"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- BOTÃO PARA VER MAIS APLICAÇÕES (OPCIONAL) -->
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="#contact" class="btn">Solicitar Sistema Personalizado</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- BANNER DE DESTAQUE (OPCIONAL) -->
+    <!-- SE NÃO PRECISAR, PODE REMOVER ESTA SEÇÃO INTEIRA -->
+    <section class="banner">
+        <div class="container">
+            <h2>Precisa de uma solução personalizada?</h2>
+            <p>Desenvolvemos sistemas sob medida para atender às necessidades específicas do seu negócio. Entre em contato para uma consultoria gratuita.</p>
+            <a href="#contact" class="btn" style="background: white; color: var(--primary);">Fazer Orçamento</a>
+        </div>
+    </section>
+
+    <!-- SERVIÇOS -->
+    <!-- ESTA SEÇÃO PODE SER ALTERADA CONFORME OS SERVIÇOS QUE OFERECE -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">Nossos Serviços</h2>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <h3>Desenvolvimento Web</h3>
+                    <p>Sites responsivos, sistemas web e aplicações sob medida com as melhores tecnologias do mercado.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <h3>Aplicativos Mobile</h3>
+                    <p>Apps nativos e híbridos para iOS e Android, com design intuitivo e alta performance.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Solutions</h3>
+                    <p>Hospedagem, migração e infraestrutura em nuvem para escalabilidade e segurança.</p>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Consultoria e Suporte</h3>
+                    <p>Otimização de sistemas, segurança da informação e suporte técnico especializado.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER COM CONTATO -->
+    <!-- ATUALIZE OS DADOS DE CONTATO AQUI -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <span>🚀</span> Jhulio Soluções
+                    </div>
+                    <p>Empresa especializada em desenvolvimento de soluções tecnológicas inovadoras para empresas de todos os tamanhos.</p>
+                    
+                    <div class="contact-info-footer">
+                        <div>
+                            <i class="fas fa-envelope"></i>
+                            <span>contato@jhuliosolucoes.com.br</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-phone-alt"></i>
+                            <span>(68) 98112-1212</span>
+                        </div>
+                        <div>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Atendimento em todo o Brasil</span>
+                        </div>
+                    </div>
+                    
+                    <div class="social-icons">
+                        <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#home">Início</a></li>
+                        <li><a href="#applications">Aplicações</a></li>
+                        <li><a href="#services">Serviços</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Aplicações</h3>
+                    <ul>
+                        <!-- ATUALIZE OS LINKS DAS APLICAÇÕES AQUI TAMBÉM -->
+                        <li><a href="https://controle-frota.jhuliosolucoes.com.br" target="_blank">Controle de Frota</a></li>
+                        <li><a href="#">Gestão Financeira (Em breve)</a></li>
+                        <li><a href="#">E-commerce (Em breve)</a></li>
+                        <li><a href="#">RH e Ponto (Em breve)</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 Jhulio Soluções. Todos os direitos reservados. | jhuliosolucoes.com.br</p>
+                <p style="margin-top: 10px; font-size: 0.8rem;">Desenvolvido com ❤️ pela Jhulio Soluções</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Menu mobile
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navLinks.classList.contains('active') 
+                ? '<i class="fas fa-times"></i>' 
+                : '<i class="fas fa-bars"></i>';
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+        
+        // Smooth scroll para âncoras
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if(targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
 </html>
